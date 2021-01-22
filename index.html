@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Google Pixel 3</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="styles.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<header>
+			<a href=""><h3>Google Pixel 5</h3></a>
+			<ul>
+				<li><a href="#1" >Overview</a></li>
+				<li><a href="#2" >Specs</a></li>
+				<li class="OrderNow" ><a href="#3" >Order Now</a></li>
+			</ul>
+		</header>
+		<div class="Dots" >
+			<div></div>
+		</div>
+		<div class="Section1">
+			<div class="Images" id="1" >
+				<img class="imgzminus" src="assets/unnamed.png" />
+				<img class="img" src="assets/unnamed2.png" />
+			</div>
+			<div class="Title" >
+				<h1>The ultimate<span><br />5G Google </span>phone.</h1>
+				<h2>Smooth ass performance.</h2>
+				<p>More RAM lets you move from <br />task to task, super fast.</p>
+				<br />
+				<buttom class="orderButton" >Order Now</buttom>
+			</div>
+		</div>
+		<div class="Section2" id="2" >
+			<div class="left" >
+				<h1>Tech Specs</h1>
+				<!-- <img src="./assets/angle-arrow-down.svg" /> -->
+				<!-- Other Specs -->
+			</div>
+			<div class="specsright" id="specsright" >
+			</div>
+		</div>
+		<div class="Section3" id="3" >
+		</div>
+		<script>
+
+
+			const specs = [
+				{title: 'Display', speclist: [
+					'Full-screen 6.0-inch (151 mm) display with transmissive hole',
+					'19.5:9 aspect ratio',
+					'FHD+ (1080 x 2340) Flexible OLED at 432 ppi',
+					'>1,000,000:1 contrast ratio',
+					'HDR support',
+					'Full 24-bit depth for 16 million colors',
+					'Always-on display',
+					'Now Playing',
+					'Touchscreen',
+					'Smooth Display (up to 90 Hz1)'
+				]},
+				{title: 'Dimensions and Weight', speclist: [
+					'5.7 height x 2.8 width x 0.3 depth (inches)',
+					'144.7 height x 70.4 width x 8.0 depth (mm)',
+					'151 g'
+					]},
+				{title: 'Battery', speclist: ['Minimum 4000 mAh']},
+				{title: 'Memory and Storage', speclist: ['8 GB LPDDR4x RAM', '128 GB storage']},
+				{title: 'Processor', speclist: [
+					'Qualcomm® Snapdragon™ 765G 2.4 GHz + 2.2 GHz + 1.8 GHz, 64-bit',
+					'Octa-Core',
+					'Adreno 620',
+					'Titan™ M Security Module'
+				]},
+			]
+
+			for (specContent in specs) {
+
+				let arrowDown = document.createElement("img");
+				arrowDown.className = "arrowDown";
+				arrowDown.src = "./assets/angle-arrow-down.svg";
+				arrowDown.fill="#fff";
+				
+				let spec = document.createElement("div");
+				spec.className = "spec";
+
+				let specHead = document.createElement("div");
+				specHead.className = "specHead";
+				
+				let pHead = document.createElement("p");
+				pHead.appendChild(document.createTextNode(specs[specContent].title)); 
+				let toggleHead = document.createElement("button");
+				toggleHead.className = "spec_toggle specopen" + specContent;
+				toggleHead.id = "form_task_comment" + specContent;
+				toggleHead.appendChild(arrowDown); 
+				specHead.appendChild(pHead);
+				specHead.appendChild(toggleHead);
+				
+				spec.appendChild(specHead);
+
+				let specBody = document.createElement('div');
+				specBody.className = "specbody specbody" + specContent
+
+				for (s in specs[specContent].speclist) {
+					let specItem = document.createElement('p');
+					specItem.appendChild(document.createTextNode(specs[specContent].speclist[s]))
+					specBody.appendChild(specItem);
+				}
+
+				spec.appendChild(specBody);
+				
+				console.log(spec);
+				console.log(specContent);
+				document.getElementById('specsright').appendChild(spec);
+
+			}
+			for (let i = 0 ; i < 10 ; i++) {
+				$(".specbody" + i).hide();
+				$(".specclose" + i).hide();
+				
+				$("#form_task_comment" + i).focus(function() {
+					$(".specbody" + i).slideDown();
+					$(`#form_task_comment${i}.arrowDown`).css("fill", "red");
+				});
+				
+				$("#form_task_comment" + i).on("change, blur", function() {
+					$(".specbody" + i).slideUp();
+				});
+			}
+
+		</script>
+	</body>
+</html>
